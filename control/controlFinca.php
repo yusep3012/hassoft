@@ -41,5 +41,16 @@ class ControlFinca{
      }
      return $fincas;
  }
+ public function consultaFincaPorId($id){
+     try{
+        $sql = "select * from finca where cod_finca = $id";
+        $prep = $this->cnx->prepare($sql);
+        $prep->execute();
+        $finca = $prep->fetchAll(PDO::FETCH_OBJ);
+     }catch(PDOException $ex){
+         die($ex->getMessage());
+     }
+     return $finca;
+ }
 }
  

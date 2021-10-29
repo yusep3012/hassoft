@@ -27,4 +27,15 @@ class ControlCategoria{
          die($ex->getMessage());
      }
  }
+ public function consultaCategorias(){
+     try{
+        $sql = "select * from categoria";
+        $prep = $this->cnx->prepare($sql);
+        $prep->execute();
+        $categorias = $prep->fetchAll(PDO::FETCH_OBJ);
+     }catch(PDOException $ex){
+         die($ex->getMessage());
+     }
+     return $categorias;
+ }
 }

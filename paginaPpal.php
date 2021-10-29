@@ -1,7 +1,7 @@
 <?php
 session_start();
 $varsesion = $_SESSION['usuario'];
-error_reporting(0);
+error_reporting(1);
 if($varsesion == null || $varsesion == ''){
     echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
     die();
@@ -9,7 +9,7 @@ if($varsesion == null || $varsesion == ''){
 }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 
 <head>
@@ -39,7 +39,7 @@ if($varsesion == null || $varsesion == ''){
 <body>
     <header id="header">
         <div class="sesion">
-            <h3>Usuario: <?php echo $_SESSION['usuario'] ?></h3>
+            <h3>Usuario: <?= $varsesion?></h3>
             <a href="cerrarsesion.php" class="btn-sesion">Cerrar Sesión</a>
         </div>
         <div class="center">

@@ -33,4 +33,34 @@ class controlPersona{
             die($ex->getMessage());
         }
     }
+    public function consultaPersona(){
+        try{
+            $sql = "select * from persona";
+            $prep = $this->cnx->prepare($sql);
+            $prep->execute();
+            $personas = $prep->fetchAll(PDO::FETCH_OBJ);
+        }catch(PDOException $ex){
+            die($ex->getMessage());
+        }
+        return $personas;
+    }
+
+    public function consultaPersonaPorId($id){
+        try{
+            $sql = "select * from persona where cedula = $id";
+            $prep= $this->cnx->prepare($sql);
+            $prep->execute();
+            $persona = $prep->fetchAll(PDO::FETCH_OBJ);
+        }catch(PDOException $ex){
+            die($ex->getMessage());
+        }
+        return $persona;
+    }
+    public function actualizarPersona($persona){
+        try{
+            $sql = "update persona set cedula = ?, primer_nombre = ?, ";
+        }catch(PDOException $ex){
+            die($ex->getMessage());
+        }
+    }
 }
