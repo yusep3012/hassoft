@@ -1,4 +1,7 @@
 <?php
+require_once 'control/controlPerfil.php';
+$controlPerfil = new ControlPerfil();
+$perfiles = $controlPerfil->consultaPerfiles();
 session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
@@ -6,31 +9,6 @@ if ($varsesion == null || $varsesion == '') {
     echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
     die();
     header('location:index.php');
-}
-$errores = "";
-if(isset($_POST['Registrar'])){
-    $descripcion = $_POST['descripcion'];
-    $estado = $_POST['estado'];
-
-    if(!empty($descripcion)){
-        $descripcion = trim($descripcion);
-        $descripcion = filter_var($descripcion, FILTER_SANITIZE_STRING);
-    }else{
-        $errores .= "DEBE DILIGENCIAR LA DESCRIPCION";
-    }
-    if($estado == ""){
-        $errores .= "DEBE SELECCIONAR EL ESTADO";
-    }
-
-    if(!$errores){
-        require_once 'control/controlPerfil.php';
-        $controlPerfil = new ControlPerfil();
-        $perfil = new Perfil($descripcion, $estado);
-        $controlPerfil->registrarPerfil($perfil);
-        echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON EXITO")</script>';
-    }else{
-        echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIE TODOS LOS CAMPOS")</script>';
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -71,25 +49,31 @@ if(isset($_POST['Registrar'])){
                 <li><a href="persona.php">Persona</a></li>
                 <li><a href="categoria.php">Categoria</a></li>
                 <li><a href="finca.php">Finca</a></li>
-                <li><a href="consultaPerfil.php">Consulta Perfiles</a></li>
+                <li><a href="perfil.php">Perfiles</a></li>
             </ul>
         </nav>
     </div>
     <div class="clearfix"></div>
-    <div class="bloque">
-        <form action="" method="post" class="form">
-            <h3><a href=""><i class="fas fa-users"></i></a>PERFIL</h3>
-            <label for="descripcion">Descripción</label>
-            <input type="text" name="descripcion" id="descripcion" placeholder="Descripción">
-            <label for="estado">Estado</label>
-            <select name="estado" id="estado">
-                <option value="" disabled selected>--Seleccione--</option>
-                <option value="1">Activo</option>
-                <option value="0">Inactivo</option>
-            </select>
-            <input type="submit" value="REGISTRAR" name="Registrar" class="btn-sesion">
-        </form>
+    <div class="separacion">
+        <table class="tabla">
+            <h2 id="titulo">Consulta Categorias</h2>
+            <tr class="celdas">
+                <th>Descripción</th>
+                <th>estado</th>
+                <th>modificar</th>
+            </tr>
+
+            <?php foreach ($perfiles as $perfil) :?>
+                <tr class="filas">
+                    <td><?= $perfil->descripcion ?></td>
+                    <td><?= $perfil->estado ? 'ACTIVO' : 'NO' ?></td>
+                    <td><a href="modificaPersona.php?cedula=<?= $perfil->cod_perfil ?>" class="btn-table">Modificar</a></td>
+                </tr>
+            <?php endforeach; ?>
+
+        </table>
     </div>
+    <div class="clearfix"></div>
 
 
     <footer id="footer">
