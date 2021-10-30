@@ -84,7 +84,7 @@ if ($varsesion == null || $varsesion == '') {
                     <td><?= $municipio->nombre?></td>
                     <?php endforeach; ?>
                     <td><?= $finca->estado ? 'ACTIVO' : 'NO' ?></td>
-                    <td><a href="modificaPersona.php?cedula=<?= $finca->cod_categoria ?>" class="btn-table">Modificar</a></td>
+                    <td><a href="modificaFinca.php?codFinca=<?= $finca->cod_finca ?>" class="btn-table">Modificar</a></td>
                 </tr>
             <?php endforeach; ?>
 

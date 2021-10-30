@@ -1,4 +1,7 @@
 <?php
+require_once 'control/controlPersona.php';
+require_once 'control/controlFinca.php';
+require_once 'control/controlPerfil.php';
 session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
@@ -7,9 +10,7 @@ if ($varsesion == null || $varsesion == '') {
     die();
     header('location:index.php');
 }
-require_once 'control/controlPersona.php';
-require_once 'control/controlFinca.php';
-require_once 'control/controlPerfil.php';
+
 $controlFinca = new ControlFinca();
 $controlPersona = new controlPersona();
 $controlPerfil = new ControlPerfil();
@@ -24,7 +25,6 @@ if(isset($_POST['Modificar'])){
     $sapellido = $_POST['sapellido'];
     $celular = $_POST['celular'];
     $correo = $_POST['correo'];
-    $contraseña = $_POST['contraseña'];
     $finca = $_POST['finca'];
     $perfil = $_POST['perfil'];
     $estado = $_POST['estado'];
@@ -86,10 +86,12 @@ if(isset($_POST['Modificar'])){
         $controlPersona = new controlPersona();
         $persona = new Persona($cedula, $pnombre, $snombre, $papellido, $sapellido, $celular, $correo, $finca, $perfil, $estado);
         $controlPersona->actualizarPersona($persona);
+        header('location:consultaPersona.php');
         echo '<script type="text/javascript"> alert("REGISTRO MODIFICADO CON EXITO")</script>';
     }else{
         echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIAR TODOS LOS CAMPOS ")</script>' ."$errores";
     }
+    
 }
 ?>
 <!DOCTYPE html>

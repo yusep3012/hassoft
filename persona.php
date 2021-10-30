@@ -67,7 +67,7 @@ if(isset($_POST['Registrar'])){
         $correo = trim($correo);
         $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
     }else{
-        $errores = 'EL CORREO ES OBLIGATORIO';
+        $errores .= 'EL CORREO ES OBLIGATORIO';
     }
     if($finca == ""){
         $errores .= 'DEBE SELECCIONAR LA FINCA';

@@ -6,7 +6,7 @@ $personas = $controlPersona->consultaPersona();
 $controlFinca = new ControlFinca();
 session_start();
 $varsesion = $_SESSION['usuario'];
-error_reporting(0);
+
 if ($varsesion == null || $varsesion == '') {
     echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
     die();

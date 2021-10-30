@@ -58,10 +58,9 @@ class controlPersona{
     }
     public function actualizarPersona($persona){
         try{
-            $sql = "update persona set cedula = ?, primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?, segundo_apellido = ?, celular = ?, correo = ?, estado = ?, cod_finca = ?, cod_perfil = ?";
+            $sql = "update persona set  primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?, segundo_apellido = ?, celular = ?, correo = ?, estado = ?, cod_finca = ?, cod_perfil = ? where cedula = ?";
             $prep = $this->cnx->prepare($sql);
             $prep->execute([
-                $persona->GetCedula(),
                 $persona->GetPNombre(),
                 $persona->GetSNombre(),
                 $persona->GetPApellido(),
@@ -70,7 +69,8 @@ class controlPersona{
                 $persona->GetCorreo(),
                 $persona->GetFinca(),
                 $persona->GetPerfil(),
-                $persona->GetEstado()
+                $persona->GetEstado(),
+                $persona->GetCedula()
             ]);
 
         }catch(PDOException $ex){
