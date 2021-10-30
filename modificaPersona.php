@@ -9,10 +9,88 @@ if ($varsesion == null || $varsesion == '') {
 }
 require_once 'control/controlPersona.php';
 require_once 'control/controlFinca.php';
+require_once 'control/controlPerfil.php';
 $controlFinca = new ControlFinca();
 $controlPersona = new controlPersona();
+$controlPerfil = new ControlPerfil();
 $id = $_GET['cedula'];
 $persona = $controlPersona->consultaPersonaPorId($id);
+$errores = '';
+if(isset($_POST['Modificar'])){
+    $cedula = $_POST['cedula'];
+    $pnombre = $_POST['pnombre'];
+    $snombre = $_POST['snombre'];
+    $papellido = $_POST['papellido'];
+    $sapellido = $_POST['sapellido'];
+    $celular = $_POST['celular'];
+    $correo = $_POST['correo'];
+    $contraseña = $_POST['contraseña'];
+    $finca = $_POST['finca'];
+    $perfil = $_POST['perfil'];
+    $estado = $_POST['estado'];
+
+    if(!empty($cedula)){
+        $cedula = trim($cedula);
+        $cedula = filter_var($cedula, FILTER_SANITIZE_NUMBER_INT);
+    }else{
+        $errores .= 'EL CAMPO CEDULA ES OBLIGATORIO';
+    }
+    if(!empty($pnombre)){
+        $pnombre = trim($pnombre);
+        $pnombre = filter_var($pnombre, FILTER_SANITIZE_STRING);
+    }else{
+        $errores .= 'EL CAMPO PRIMER NOMBRE ES OBLIGATORIO';
+    }
+    // if(!empty($snombre)){
+    //     $snombre = trim($snombre);
+    //     $snombre = filter_var($snombre, FILTER_SANITIZE_STRING);
+    // }else{
+    //     $errores .= 'EL CAMPO SEGUNDO NOMBRE ES REQUERIDO';
+    // }
+    if(!empty($papellido)){
+        $papellido = trim($papellido);
+        $papellido = filter_var($papellido, FILTER_SANITIZE_STRING);
+    }else{
+        $errores .= 'EL CAMPO PRIMER APELLIDO ES REQUERIDO';
+    }
+    if(!empty($sapellido)){
+        $sapellido = trim($sapellido);
+        $sapellido = filter_var($sapellido, FILTER_SANITIZE_STRING);
+    }else{
+        $errores .= 'EL CAMPO SEGUNDO APELLIDO ES REQUERIDO';
+    }
+    if(!empty($celular)){
+        $celular = trim($celular);
+        $celular = filter_var($celular, FILTER_SANITIZE_NUMBER_INT);
+    }else{
+        $errores .= 'EL CAMPO CELULAR ES OBLIGATORIO';
+    }
+    if(!empty($correo)){
+        $correo = trim($correo);
+        $correo = filter_var($correo, FILTER_SANITIZE_EMAIL);
+    }else{
+        $errores = 'EL CORREO ES OBLIGATORIO';
+    }
+    if($finca == ""){
+        $errores .= 'DEBE SELECCIONAR LA FINCA';
+    }
+    if($perfil == ""){
+        $errores .= 'DEBE SELECCIONAR EL PERFIL';
+    }
+    if($estado == ""){
+        $errores .= 'DEBE SELECCIONAR EL ESTADO';
+    }
+
+    if(!$errores){  
+        require_once 'modelo/persona.php';
+        $controlPersona = new controlPersona();
+        $persona = new Persona($cedula, $pnombre, $snombre, $papellido, $sapellido, $celular, $correo, $finca, $perfil, $estado);
+        $controlPersona->actualizarPersona($persona);
+        echo '<script type="text/javascript"> alert("REGISTRO MODIFICADO CON EXITO")</script>';
+    }else{
+        echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIAR TODOS LOS CAMPOS ")</script>' ."$errores";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -60,7 +138,9 @@ $persona = $controlPersona->consultaPersonaPorId($id);
     <div class="bloque">
         <?php foreach($persona as $person) :
              $id = $person->cod_finca;
-             $finca = $controlFinca->consultaFincaPorId($id);?>
+             $finca = $controlFinca->consultaFincaPorId($id);
+             $idF = $persona->cod_perfil;
+             $perfil = $controlPerfil->consultaPerfilesPorId($idF);?>
         <form action="" method="post" class="form">
             <h3><a href=""><i class="far fa-user"></i></a>Modificar Persona</h3>
             <label for="cedula">cedula</label>
@@ -85,8 +165,9 @@ $persona = $controlPersona->consultaPersonaPorId($id);
             </select>
             <label for="perfil">Perfil</label>
             <select name="perfil" id="perfil">
-                <option value="" disabled selected>--Selecione--</option>
-                <option value="<?php echo $perfil->cod_perfil ?>" selected><?= $person->cod_perfil ?></option>
+                <?php foreach($perfil as $per):?>
+                <option value="<?php echo $per->cod_perfil ?>" selected><?= $per->cod_perfil ." ". $per->descripcion?></option>
+                <?php endforeach;?>    
             </select>
             <label for="estado">Estado</label>
             <select name="estado" id="estado">

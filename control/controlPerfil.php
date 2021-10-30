@@ -36,4 +36,15 @@ class ControlPerfil{
      }
      return $perfiles;
  }
+ public function consultaPerfilesPorId($id){
+     try{
+        $sql= "select * from perfil";
+        $prep = $this->cnx->prepare($sql);
+        $prep->execute();
+        $perfiles = $prep->fetchAll(PDO::FETCH_OBJ);
+     }catch(PDOException $ex){
+         die($ex->getMessage());
+     }
+     return $perfiles;
+ }
 }
