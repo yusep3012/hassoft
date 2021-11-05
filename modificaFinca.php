@@ -40,7 +40,7 @@ $codFinca = $_GET['codFinca'];
             <ul>
                 <li><a href="paginaPpal.php">Inicio</a></li>
                 <li><a href="persona.php">Persona</a></li>
-                <li><a href="categoria.php">Categoria</a></li>
+                <li><a href="categoria.php">Categoría</a></li>
                 <li><a href="consultaFinca.php">Consulta Finca</a></li>
                 <li><a href="perfil.php">Perfiles</a></li>
             </ul>
@@ -52,14 +52,14 @@ $codFinca = $_GET['codFinca'];
             <h3><a href=""><i class="fas fa-tree"></i></a>FINCA</h3>
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-            <label for="direccion">Direccion</label>
-            <input type="text" name="direccion" id="direccion" placeholder="Direccion">
-            <label for="telefono">telefono</label>
-            <input type="number" name="telefono" id="telefono" placeholder="telefono">
+            <label for="direccion">Dirección</label>
+            <input type="text" name="direccion" id="direccion" placeholder="Dirección">
+            <label for="telefono">teléfono</label>
+            <input type="number" name="telefono" id="telefono" placeholder="teléfono">
             <label for="correo">Correo</label>
             <input type="email" name="correo" id="correo" placeholder="Correo">
-            <label for="hectareas">Numero Hectareas</label>
-            <input type="number" name="hectareas" id="hectareas" placeholder="Número Hectareas">
+            <label for="hectareas">Numero Hectáreas</label>
+            <input type="number" name="hectareas" id="hectareas" placeholder="Número Hectáreas">
             <label for="municipio">Municipio</label>
             <select name="municipio" id="municipio">
                 <option value="" disabled selected>--Seleccione--</option>
