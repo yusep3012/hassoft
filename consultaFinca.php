@@ -8,7 +8,7 @@ session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
 if ($varsesion == null || $varsesion == '') {
-    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
+    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACIÓN")</script>';
     die();
     header('location:index.php');
 }
@@ -50,7 +50,7 @@ if ($varsesion == null || $varsesion == '') {
             <ul>
                 <li><a href="paginaPpal.php">Inicio</a></li>
                 <li><a href="persona.php">Persona</a></li>
-                <li><a href="categoria.php">Categoria</a></li>
+                <li><a href="categoria.php">Categoría</a></li>
                 <li><a href="finca.php">Finca</a></li>
                 <li><a href="perfil.php">Perfiles</a></li>
             </ul>
@@ -63,9 +63,9 @@ if ($varsesion == null || $varsesion == '') {
             <tr class="celdas">
                 <th>Nombres</th>
                 <th>Dirección</th>
-                <th>Telefono</th>
+                <th>Teléfono</th>
                 <th>Correo</th>
-                <th>Número Hectareas</th>
+                <th>Número Hectáreas</th>
                 <th>Municipio</th>
                 <th>estado</th>
                 <th>modificar</th>
