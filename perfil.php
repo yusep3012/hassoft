@@ -3,7 +3,7 @@ session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
 if ($varsesion == null || $varsesion == '') {
-    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
+    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACIÓN")</script>';
     die();
     header('location:index.php');
 }
@@ -16,7 +16,7 @@ if(isset($_POST['Registrar'])){
         $descripcion = trim($descripcion);
         $descripcion = filter_var($descripcion, FILTER_SANITIZE_STRING);
     }else{
-        $errores .= "DEBE DILIGENCIAR LA DESCRIPCION";
+        $errores .= "DEBE DILIGENCIAR LA DESCRIPCIÓN";
     }
     if($estado == ""){
         $errores .= "DEBE SELECCIONAR EL ESTADO";
@@ -27,7 +27,7 @@ if(isset($_POST['Registrar'])){
         $controlPerfil = new ControlPerfil();
         $perfil = new Perfil($descripcion, $estado);
         $controlPerfil->registrarPerfil($perfil);
-        echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON EXITO")</script>';
+        echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON ÉXITO")</script>';
     }else{
         echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIE TODOS LOS CAMPOS")</script>';
     }
@@ -69,7 +69,7 @@ if(isset($_POST['Registrar'])){
             <ul>
                 <li><a href="paginaPpal.php">Inicio</a></li>
                 <li><a href="persona.php">Persona</a></li>
-                <li><a href="categoria.php">Categoria</a></li>
+                <li><a href="categoria.php">Categoría</a></li>
                 <li><a href="finca.php">Finca</a></li>
                 <li><a href="consultaPerfil.php">Consulta Perfiles</a></li>
             </ul>
