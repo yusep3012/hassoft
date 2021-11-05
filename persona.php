@@ -9,7 +9,7 @@ session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
 if ($varsesion == null || $varsesion == '') {
-    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
+    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACIÓN")</script>';
     die();
     header('location:index.php');
 }
@@ -31,7 +31,7 @@ if(isset($_POST['Registrar'])){
         $cedula = trim($cedula);
         $cedula = filter_var($cedula, FILTER_SANITIZE_NUMBER_INT);
     }else{
-        $errores .= 'EL CAMPO CEDULA ES OBLIGATORIO';
+        $errores .= 'EL CAMPO CÉDULA ES OBLIGATORIO';
     }
     if(!empty($pnombre)){
         $pnombre = trim($pnombre);
@@ -89,7 +89,7 @@ if(isset($_POST['Registrar'])){
        $nombre = $pnombre ." ". $papellido;
        $usuario = new Usuario($nombre, $contraseña);
        $controlUsuario->registroUsuario($usuario);
-       echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON EXITO")</script>';
+       echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON ÉXITO")</script>';
     }else{
         echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIAR TODOS LOS CAMPOS")</script>';
     }
@@ -132,7 +132,7 @@ if(isset($_POST['Registrar'])){
             <ul>
                 <li><a href="paginaPpal.php">Inicio</a></li>
                 <li><a href="Consultapersona.php">Consulta Persona</a></li>
-                <li><a href="categoria.php">Categoria</a></li>
+                <li><a href="categoria.php">Categoría</a></li>
                 <li><a href="finca.php">Finca</a></li>
                 <li><a href="perfil.php">Perfiles</a></li>
             </ul>
@@ -142,8 +142,8 @@ if(isset($_POST['Registrar'])){
     <div class="bloque">
         <form action="" method="post" class="form">
             <h3><a href=""><i class="far fa-user"></i></a>Persona</h3>
-            <label for="cedula">cedula</label>
-            <input type="number" name="cedula" id="cedula" placeholder="cedula">
+            <label for="cedula">cédula</label>
+            <input type="number" name="cedula" id="cedula" placeholder="cédula">
             <label for="pnombre">Primer Nombre</label>
             <input type="text" name="pnombre" id="pnombre" placeholder="Primer Nombre">
             <label for="snombre">Segundo Nombre</label>
