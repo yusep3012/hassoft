@@ -6,7 +6,7 @@ session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
 if ($varsesion == null || $varsesion == '') {
-    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
+    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACIÓN")</script>';
     die();
     header('location:index.php');
 }
@@ -33,7 +33,7 @@ if(isset($_POST['Modificar'])){
         $cedula = trim($cedula);
         $cedula = filter_var($cedula, FILTER_SANITIZE_NUMBER_INT);
     }else{
-        $errores .= 'EL CAMPO CEDULA ES OBLIGATORIO';
+        $errores .= 'EL CAMPO CÉDULA ES OBLIGATORIO';
     }
     if(!empty($pnombre)){
         $pnombre = trim($pnombre);
@@ -87,7 +87,7 @@ if(isset($_POST['Modificar'])){
         $persona = new Persona($cedula, $pnombre, $snombre, $papellido, $sapellido, $celular, $correo, $finca, $perfil, $estado);
         $controlPersona->actualizarPersona($persona);
         header('location:consultaPersona.php');
-        echo '<script type="text/javascript"> alert("REGISTRO MODIFICADO CON EXITO")</script>';
+        echo '<script type="text/javascript"> alert("REGISTRO MODIFICADO CON ÉXITO")</script>';
     }else{
         echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIAR TODOS LOS CAMPOS ")</script>' ."$errores";
     }
@@ -130,7 +130,7 @@ if(isset($_POST['Modificar'])){
             <ul>
                 <li><a href="paginaPpal.php">Inicio</a></li>
                 <li><a href="Consultapersona.php">Consulta Persona</a></li>
-                <li><a href="categoria.php">Categoria</a></li>
+                <li><a href="categoria.php">Categoría</a></li>
                 <li><a href="finca.php">Finca</a></li>
                 <li><a href="perfil.php">Perfiles</a></li>
             </ul>
@@ -145,8 +145,8 @@ if(isset($_POST['Modificar'])){
              $perfil = $controlPerfil->consultaPerfilesPorId($idF);?>
         <form action="" method="post" class="form">
             <h3><a href=""><i class="far fa-user"></i></a>Modificar Persona</h3>
-            <label for="cedula">cedula</label>
-            <input type="number" name="cedula" value="<?= $person->cedula ?>" id="cedula" placeholder="cedula">
+            <label for="cedula">cédula</label>
+            <input type="number" name="cedula" value="<?= $person->cedula ?>" id="cedula" placeholder="cédula">
             <label for="pnombre">Primer Nombre</label>
             <input type="text" name="pnombre" value="<?= $person->primer_nombre?>" id="pnombre" placeholder="Primer Nombre">
             <label for="snombre">Segundo Nombre</label>
