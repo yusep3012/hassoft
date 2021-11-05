@@ -3,7 +3,7 @@ session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
 if ($varsesion == null || $varsesion == '') {
-    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
+    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACIÓN")</script>';
     die();
     header('location:index.php');
 }
@@ -25,7 +25,7 @@ if(isset($_POST['Registrar'])){
         $descripcion = trim($descripcion);
         $descripcion = filter_var($descripcion, FILTER_SANITIZE_STRING);
     }else{
-        $errores .= "DEBE DILIGENCIAR LA DESCRIPCION";
+        $errores .= "DEBE DILIGENCIAR LA DESCRIPCIÓN";
     }
     if(!empty($inicial)){
         $inicial = trim($inicial);
@@ -48,7 +48,7 @@ if(isset($_POST['Registrar'])){
         $controlCategoria = new ControlCategoria();
         $categoria = new Categoria($nombre, $inicial, $final, $descripcion, $estado);
         $controlCategoria->registroCategoria($categoria);
-        echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON EXITO")</script>';
+        echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON ÉXITO")</script>';
     }else{
         echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIE TODOS LOS CAMPOS")</script>';
     }
@@ -90,7 +90,7 @@ if(isset($_POST['Registrar'])){
             <ul>
                 <li><a href="paginaPpal.php">Inicio</a></li>
                 <li><a href="persona.php">Persona</a></li>
-                <li><a href="consultaCategoria.php">Consulta Categorias</a></li>
+                <li><a href="consultaCategoria.php">Consulta Categorías</a></li>
                 <li><a href="finca.php">Finca</a></li>
                 <li><a href="perfil.php">Perfiles</a></li>
             </ul>
@@ -99,7 +99,7 @@ if(isset($_POST['Registrar'])){
     <div class="clearfix"></div>
     <div class="bloque">
         <form action="" method="post" class="form">
-            <h3><a href=""><i class="far fa-id-card"></i></a>CATEGORIA</h3>
+            <h3><a href=""><i class="far fa-id-card"></i></a>CATEGORÍA</h3>
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
             <label for="descripcion">Descripción</label>
