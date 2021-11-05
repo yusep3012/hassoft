@@ -6,7 +6,7 @@ session_start();
 $varsesion = $_SESSION['usuario'];
 error_reporting(0);
 if ($varsesion == null || $varsesion == '') {
-    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACION")</script>';
+    echo '<script type="text/javascript"> alert("USTED NO TIENE AUTORIZACIÓN")</script>';
     die();
     header('location:index.php');
 }
@@ -30,13 +30,13 @@ if(isset($_POST['Registrar'])){
         $direccion = trim($direccion);
         $direccion = filter_var($direccion, FILTER_SANITIZE_STRING);
     }else{
-        $errores .= "DEBE INGRESAR LA DIRECCION";
+        $errores .= "DEBE INGRESAR LA DIRECCIÓN";
     }
     if(!empty($telefono)){
         $telefono = trim($telefono);
         $telefono = filter_var($telefono, FILTER_SANITIZE_NUMBER_INT);
     }else{
-        $errores .= "DEBE INGRESAR EL TELEFONO";
+        $errores .= "DEBE INGRESAR EL TELÉFONO";
     }
     if(!empty($correo)){
         $correo = trim($correo);
@@ -48,7 +48,7 @@ if(isset($_POST['Registrar'])){
         $nroHectareas = trim($nroHectareas);
         $nroHectareas = filter_var($nroHectareas, FILTER_SANITIZE_NUMBER_INT);
     }else{
-        $errores .= "DEBE INGRESAR LA CANTIDAD DE HECTAREAS";
+        $errores .= "DEBE INGRESAR LA CANTIDAD DE HECTÁREAS";
     }
     if($municipio == ""){
         $errores .= "DEBE SELECCIONAR UN MUNICIPIO";
@@ -61,7 +61,7 @@ if(isset($_POST['Registrar'])){
         $controlFinca = new ControlFinca();
         $finca = new Finca($nombre, $direccion, $telefono, $correo, $nroHectareas, $municipio, $estado);
         $controlFinca->registroFinca($finca);
-        echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON EXITO")</script>';
+        echo '<script type="text/javascript"> alert("REGISTRO ALMACENADO CON ÉXITO")</script>';
     }else{
         echo '<script type="text/javascript"> alert("POR FAVOR DILIGENCIE TODOS LOS CAMPOS")</script>';
     }
@@ -103,7 +103,7 @@ if(isset($_POST['Registrar'])){
             <ul>
                 <li><a href="paginaPpal.php">Inicio</a></li>
                 <li><a href="persona.php">Persona</a></li>
-                <li><a href="categoria.php">Categoria</a></li>
+                <li><a href="categoria.php">Categoría</a></li>
                 <li><a href="consultaFinca.php">Consulta Finca</a></li>
                 <li><a href="perfil.php">Perfiles</a></li>
             </ul>
@@ -115,14 +115,14 @@ if(isset($_POST['Registrar'])){
             <h3><a href=""><i class="fas fa-tree"></i></a>FINCA</h3>
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-            <label for="direccion">Direccion</label>
-            <input type="text" name="direccion" id="direccion" placeholder="Direccion">
-            <label for="telefono">telefono</label>
-            <input type="number" name="telefono" id="telefono" placeholder="telefono">
+            <label for="direccion">Dirección</label>
+            <input type="text" name="direccion" id="direccion" placeholder="Dirección">
+            <label for="telefono">teléfono</label>
+            <input type="number" name="telefono" id="telefono" placeholder="teléfono">
             <label for="correo">Correo</label>
             <input type="email" name="correo" id="correo" placeholder="Correo">
-            <label for="hectareas">Numero Hectareas</label>
-            <input type="number" name="hectareas" id="hectareas" placeholder="Número Hectareas">
+            <label for="hectareas">Numero Hectáreas</label>
+            <input type="number" name="hectareas" id="hectareas" placeholder="Número Hectáreas">
             <label for="municipio">Municipio</label>
             <select name="municipio" id="municipio">
                 <option value="" disabled selected>--Seleccione--</option>
